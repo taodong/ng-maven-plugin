@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.taodong</groupId>
+    <artifactId>example</artifactId>
+    <version>0</version>
+    <packaging>pom</packaging>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.taodong</groupId>
+                <artifactId>ngcli-maven-plugin</artifactId>
+                <!--
+                Set <version> to the latest released version of ngcli-maven-plugin, like in README.md.
+                Example:
+                <version>0.2-SNAPSHOT</version>
+                <version>@project.version@</version>
+                -->
+
+                <version>@project.version@</version>
+
+                <configuration>
+                    <sourceDir>sample</sourceDir>
+                    <distDir>front-end-dist</distDir>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>ng-cli-run</id>
+                        <goals>
+                            <goal>ng-cli-run</goal>
+                        </goals>
+                        <configuration>
+                            <isProduct>false</isProduct>
+                            <runE2e>false</runE2e>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>ng-cli-clean</id>
+                        <goals>
+                            <goal>ng-cli-clean</goal>
+                        </goals>
+                        <configuration>
+                            <cleanNode>true</cleanNode>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
