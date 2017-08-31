@@ -62,3 +62,6 @@ Clean front end files. It will remove all files under ${sourceDir}/dist folder a
 ```
 Optional configuration parameter include:
 * cleanNode: whether to remove all the files under ${sourceDir}/node_module. Default is false.
+
+## License
+MIT
