@@ -25,7 +25,7 @@ public class NgRunMojo extends NgAbstractMojo {
     /**
      * Build front end for production or not
      */
-    @Parameter(property = "skipTests", required = false, defaultValue = "false")
+    @Parameter(property = "isProduct", required = false, defaultValue = "false")
     protected Boolean isProduct;
 
     /**
