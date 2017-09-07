@@ -4,7 +4,7 @@
     <groupId>com.github.taodong</groupId>
     <artifactId>ngcli-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>0.2</version>
+    <version>0.2-SNAPSHOT</version>
     <name>Angular Client Maven Plugin</name>
     <description>Angular Client Maven Plugin</description>
     <url>https://github.com/taodong/ng-maven-plugin</url>
