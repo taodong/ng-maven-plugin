@@ -45,7 +45,7 @@ Optional configuration parameter include:
 * skipTests: a shared flag with maven tests. Default is false.
 * skipNgTests: whether to skip front end tests. Default is false.
 * runE2e: whether to run front end E2E tests. Default is true.
-* timeout: shell time out in seconds. Default is 30 seconds. You might want to increase it if your front end has many tests. It also can be used to force close testing Browsers.
+* timeout: shell time out in minutes. Default is 10 minutes. You might want to increase it if your front end has many tests. It also can be used to force close testing Browsers.
 
 ### ng-cli-clean
 Clean front end files. It will remove all files under ${sourceDir}/dist folder and ${distDir} folder. Default phase is set to clean. A sample usage is:

@@ -17,7 +17,7 @@ import org.apache.maven.plugin.logging.Log;
 public class ShellExecutor {
 
 
-    // default shell time out at 5 minutes
+    // default shell time out at 30 minutes
     private static long defaultTimeout = 30;
 
     /**

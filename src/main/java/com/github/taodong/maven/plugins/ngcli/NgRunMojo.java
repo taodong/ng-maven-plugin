@@ -29,9 +29,9 @@ public class NgRunMojo extends NgAbstractMojo {
     protected Boolean isProduct;
 
     /**
-     * time out for shell commands in seconds
+     * time out for shell commands in minutes
      */
-    @Parameter(property = "shellTimeout", required = false, defaultValue = "30")
+    @Parameter(property = "shellTimeout", required = false, defaultValue = "10")
     protected long timeout;
     /**
      * Whether you should skip while running in the test phase (default is false)
