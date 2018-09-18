@@ -57,6 +57,12 @@ public class NgRunMojo extends NgAbstractMojo {
     @Parameter(property = "runE2e", required = false, defaultValue = "true")
     protected Boolean runE2e;
 
+    /**
+     * Default ng project name which is defined in angular.json
+     */
+    @Parameter(property = "rootNgProject")
+    protected String rootNgProject;
+
     public void execute() throws MojoExecutionException, MojoFailureException {
         try {
             ShellExecutor shellExecutor = new ShellExecutor();
@@ -85,7 +91,7 @@ public class NgRunMojo extends NgAbstractMojo {
                 }
                 String command = Joiner.on(" ").skipNulls().join("ng build", isProduct ? "--prod" : null);
                 commands.add(command);
-                int rs = shellExecutor.executeCommands(getLog(), commands, sourceDir, timeout);
+                int rs = shellExecutor.executeCommands(getLog(), commands, sourceDir, timeout * 60);
                 if (rs < 0) {
                     throw new MojoFailureException("Ng build failed");
                 }
@@ -102,8 +108,20 @@ public class NgRunMojo extends NgAbstractMojo {
                     throw new MojoFailureException(Joiner.on(" ").skipNulls().join("Can't find dist folder under", sourceDir.getAbsolutePath()));
                 }
 
-                getLog().info(Joiner.on("").skipNulls().join("Copy file from ", sourceDir.getPath(), "/dist to ", distDir.getPath()));
-                FileUtils.copyDirectory(dirs[0], distDir);
+                File ngDistFolder = dirs[0];
+
+                getLog().info(Joiner.on(" ").useForNull("EMPTY").join("rootNgProject is set to", rootNgProject));
+
+                if (StringUtils.isNotBlank(rootNgProject)) {
+                    ngDistFolder = new File(ngDistFolder, rootNgProject);
+
+                    if (ngDistFolder == null || !ngDistFolder.exists() || !ngDistFolder.isDirectory()) {
+                        throw new MojoExecutionException(Joiner.on(" ").skipNulls().join("Can't find folder", rootNgProject, "under dist. Please check your angular.json and make sure your defaultProject is set to", rootNgProject));
+                    }
+                }
+
+                getLog().info(Joiner.on("").skipNulls().join("Copy files from ", ngDistFolder.getPath(), " to ", distDir.getPath()));
+                FileUtils.copyDirectory(ngDistFolder, distDir);
 
             }
         } catch (Exception e) {
